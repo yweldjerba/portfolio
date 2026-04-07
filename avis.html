@@ -70,65 +70,79 @@ body { background: var(--bg); color: var(--dark); font-family: var(--fB); overfl
 
 /* ─── PHOTOS GRID ─── */
 .photos-section { margin-bottom: 80px; }
-
-.photos-grid {
-  display: grid;
-  gap: 16px;
-}
-
-/* 1 photo : pleine largeur */
+.photos-grid { display: grid; gap: 12px; }
 .photos-grid.count-1 { grid-template-columns: 1fr; }
 .photos-grid.count-1 .photo-card { aspect-ratio: 21/9; }
-
-/* 2 photos : 2 colonnes égales */
 .photos-grid.count-2 { grid-template-columns: repeat(2, 1fr); }
-
-/* 3 photos : 1 grande + 2 petites */
 .photos-grid.count-3 { grid-template-columns: repeat(2, 1fr); }
 .photos-grid.count-3 .photo-card:first-child { grid-column: span 2; aspect-ratio: 21/9; }
-
-/* 4 photos : 2×2 */
 .photos-grid.count-4 { grid-template-columns: repeat(2, 1fr); }
-
-/* 5 photos : 3 en haut, 2 en bas */
-.photos-grid.count-5 { grid-template-columns: repeat(6, 1fr); }
-.photos-grid.count-5 .photo-card { grid-column: span 2; }
-.photos-grid.count-5 .photo-card:nth-child(4) { grid-column: span 3; }
-.photos-grid.count-5 .photo-card:nth-child(5) { grid-column: span 3; }
-
-/* 6+ photos : grille 3 colonnes */
+.photos-grid.count-5 { grid-template-columns: repeat(12, 1fr); gap: 12px; }
+.photos-grid.count-5 .photo-card:nth-child(1) { grid-column: span 7; aspect-ratio: 16/10; }
+.photos-grid.count-5 .photo-card:nth-child(2) { grid-column: span 5; aspect-ratio: 16/10; }
+.photos-grid.count-5 .photo-card:nth-child(3) { grid-column: span 4; aspect-ratio: 4/3; }
+.photos-grid.count-5 .photo-card:nth-child(4) { grid-column: span 4; aspect-ratio: 4/3; }
+.photos-grid.count-5 .photo-card:nth-child(5) { grid-column: span 4; aspect-ratio: 4/3; }
 .photos-grid.count-many { grid-template-columns: repeat(3, 1fr); }
 
 .photo-card {
-  position: relative; border-radius: 16px; overflow: hidden;
-  aspect-ratio: 16/10; background: var(--bg2);
-  box-shadow: 0 6px 30px rgba(54,85,245,.1);
+  position: relative; border-radius: 20px; overflow: hidden;
+  background: var(--bg2);
+  border: 1px solid rgba(54,85,245,.12);
+  box-shadow: 0 4px 24px rgba(54,85,245,.08), 0 1px 4px rgba(10,12,26,.06);
   cursor: pointer;
-  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+  transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s, border-color .4s;
 }
-.photo-card:hover { transform: scale(1.02) translateY(-4px); box-shadow: 0 18px 60px rgba(54,85,245,.18); }
-.photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 24px 64px rgba(54,85,245,.22), 0 4px 16px rgba(10,12,26,.1);
+  border-color: rgba(54,85,245,.35);
+}
+.photo-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .6s cubic-bezier(.16,1,.3,1), filter .4s;
+  filter: brightness(.97) saturate(1.05);
+}
+.photo-card:hover img { transform: scale(1.07); filter: brightness(1) saturate(1.1); }
+.photo-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  transform: translateX(-100%); transition: transform .6s ease; pointer-events: none;
+}
+.photo-card:hover::after { transform: translateX(100%); }
 .photo-card-overlay {
-  position: absolute; inset: 0; background: rgba(54,85,245,.0);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: all .3s;
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,12,26,.55) 0%, transparent 55%);
+  opacity: 0; transition: opacity .35s;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 18px 20px;
 }
-.photo-card:hover .photo-card-overlay { background: rgba(54,85,245,.15); opacity: 1; }
-.photo-card-overlay span { font-family: var(--fM); font-size: 10px; color: #fff; letter-spacing: .14em; text-transform: uppercase; background: rgba(54,85,245,.8); padding: 8px 18px; border-radius: 100px; }
-
+.photo-card:hover .photo-card-overlay { opacity: 1; }
+.photo-card-overlay span {
+  font-family: var(--fM); font-size: 9px; color: #fff;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(54,85,245,.75); backdrop-filter: blur(6px);
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+}
 .photo-card-num {
-  position: absolute; top: 12px; left: 12px;
-  font-family: var(--fM); font-size: 9px; color: rgba(255,255,255,.7);
-  background: rgba(10,12,26,.45); backdrop-filter: blur(6px);
-  padding: 4px 10px; border-radius: 100px; letter-spacing: .1em;
-  transition: opacity .3s; opacity: 0;
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--fM); font-size: 9px; color: rgba(255,255,255,.9);
+  background: rgba(10,12,26,.5); backdrop-filter: blur(8px);
+  padding: 4px 11px; border-radius: 100px; letter-spacing: .12em;
+  border: 1px solid rgba(255,255,255,.12);
+  transition: opacity .3s, transform .3s;
+  opacity: 0; transform: translateY(-4px);
 }
-.photo-card:hover .photo-card-num { opacity: 1; }
-
+.photo-card:hover .photo-card-num { opacity: 1; transform: translateY(0); }
 .gallery-caption {
   font-family: var(--fM); font-size: 8px; color: var(--dim);
-  letter-spacing: .12em; text-align: center; margin-top: 12px;
-  text-transform: uppercase;
+  letter-spacing: .18em; text-align: center; margin-top: 16px;
+  text-transform: uppercase; display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+}
+.gallery-caption::before, .gallery-caption::after {
+  content: ''; width: 40px; height: 1px; background: rgba(54,85,245,.15);
 }
 
 /* No photos */
@@ -181,6 +195,58 @@ body { background: var(--bg); color: var(--dark); font-family: var(--fB); overfl
   background: rgba(255,255,255,.06); padding: 6px 16px; border-radius: 100px;
 }
 
+/* ─── CODE SECTION ─── */
+.code-section { margin-bottom: 80px; }
+.code-img-wrap {
+  position: relative; border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(54,85,245,.15);
+  box-shadow: 0 8px 40px rgba(54,85,245,.1), 0 2px 8px rgba(10,12,26,.06);
+  background: #1e1e2e; cursor: pointer;
+  transition: box-shadow .4s, border-color .4s;
+}
+.code-img-wrap:hover {
+  box-shadow: 0 20px 64px rgba(54,85,245,.2), 0 4px 16px rgba(10,12,26,.1);
+  border-color: rgba(54,85,245,.35);
+}
+.code-img-wrap img { width: 100%; display: block; }
+.code-img-wrap::after {
+  content: 'Agrandir ↗'; position: absolute; bottom: 16px; right: 16px;
+  font-family: var(--fM); font-size: 9px; color: #fff;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(54,85,245,.75); backdrop-filter: blur(6px);
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+  opacity: 0; transition: opacity .3s;
+}
+.code-img-wrap:hover::after { opacity: 1; }
+#code-lb.open { opacity: 1 !important; pointer-events: all !important; }
+
+/* ─── BDD SECTION ─── */
+.bdd-section { margin-bottom: 80px; }
+.bdd-schema-wrap {
+  position: relative; border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(54,85,245,.15);
+  box-shadow: 0 8px 40px rgba(54,85,245,.1), 0 2px 8px rgba(10,12,26,.06);
+  background: #f8f9ff; cursor: pointer;
+  transition: box-shadow .4s, border-color .4s;
+}
+.bdd-schema-wrap:hover {
+  box-shadow: 0 20px 64px rgba(54,85,245,.18), 0 4px 16px rgba(10,12,26,.1);
+  border-color: rgba(54,85,245,.3);
+}
+.bdd-schema-wrap img { width: 100%; display: block; }
+.bdd-schema-wrap::after {
+  content: 'Agrandir ↗'; position: absolute; bottom: 16px; right: 16px;
+  font-family: var(--fM); font-size: 9px; color: #fff;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(54,85,245,.75); backdrop-filter: blur(6px);
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+  opacity: 0; transition: opacity .3s;
+}
+.bdd-schema-wrap:hover::after { opacity: 1; }
+#bdd-lb.open { opacity: 1 !important; pointer-events: all !important; }
+
 /* ─── FOOTER ─── */
 .proj-footer {
   text-align: center; padding: 32px 64px;
@@ -231,6 +297,35 @@ body { background: var(--bg); color: var(--dark); font-family: var(--fB); overfl
     <p>Les utilisateurs peuvent consulter les notes attribuées aux praticiens, que celles-ci proviennent d'<strong>experts</strong> ou de <strong>clients</strong>. L'application calcule également une <strong>moyenne générale</strong>, ce qui permet d'avoir une vision globale de la qualité des prestations d'un praticien.</p>
     <p>Un système de connexion a également été mis en place afin de permettre à certains utilisateurs d'attribuer des notes aux praticiens. Cela permet d'alimenter le système d'évaluation et d'améliorer la transparence des retours.</p>
     <p>Cette application permet ainsi de centraliser les évaluations, de faciliter leur consultation et d'obtenir rapidement une moyenne globale des notes pour chaque praticien.</p>
+  </div>
+
+  <!-- EXTRAIT DE CODE -->
+  <div class="code-section">
+    <div class="section-label">Extrait de code</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
+      <div class="code-img-wrap" onclick="document.getElementById('code-lb').classList.add('open');document.body.style.overflow='hidden'">
+        <img src="images/projets/avis/note.jpg" alt="Extrait de code Flutter">
+      </div>
+      <div style="font-size:15px;color:var(--muted);line-height:1.95;">
+        <p>Cette méthode Flutter gère la logique de <strong style="color:var(--dark)">filtrage / recherche</strong> d'une liste de praticiens en temps réel, probablement déclenchée à chaque frappe dans un <strong style="color:var(--dark)">champ de recherche</strong>.</p>
+      </div>
+    </div>
+    <div id="code-lb" style="position:fixed;inset:0;z-index:700;background:rgba(10,12,26,.94);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s" onclick="document.getElementById('code-lb').classList.remove('open');document.body.style.overflow=''">
+      <img src="images/projets/avis/note.jpg" alt="Extrait de code Flutter" style="max-width:92vw;max-height:90vh;border-radius:14px;box-shadow:0 30px 100px rgba(0,0,0,.5);object-fit:contain" onclick="event.stopPropagation()">
+      <button onclick="document.getElementById('code-lb').classList.remove('open');document.body.style.overflow=''" style="position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px)">✕</button>
+    </div>
+  </div>
+
+  <!-- BDD -->
+  <div class="bdd-section">
+    <div class="section-label">Base de données</div>
+    <div class="bdd-schema-wrap" onclick="document.getElementById('bdd-lb').classList.add('open');document.body.style.overflow='hidden'">
+      <img src="images/projets/avis/ap3.jpg" alt="Schéma de la base de données">
+    </div>
+    <div id="bdd-lb" style="position:fixed;inset:0;z-index:700;background:rgba(10,12,26,.94);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s" onclick="document.getElementById('bdd-lb').classList.remove('open');document.body.style.overflow=''">
+      <img src="images/projets/avis/ap3.jpg" alt="Schéma BDD" style="max-width:92vw;max-height:90vh;border-radius:14px;box-shadow:0 30px 100px rgba(0,0,0,.5);object-fit:contain" onclick="event.stopPropagation()">
+      <button onclick="document.getElementById('bdd-lb').classList.remove('open');document.body.style.overflow=''" style="position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px)">✕</button>
+    </div>
   </div>
 
   <div class="photos-section">

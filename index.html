@@ -187,15 +187,6 @@ section { padding: 112px 64px; position: relative; z-index: 1; }
 .contact .sec-label { color: var(--a); }
 .contact .sec-title { color: #fff; }
 .contact-body { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; margin-top: 68px; position: relative; z-index: 1; }
-.cform { display: flex; flex-direction: column; gap: 18px; }
-.fg { display: flex; flex-direction: column; gap: 7px; }
-.flbl { font-family: var(--fM); font-size: 8px; color: rgba(255,255,255,.32); letter-spacing: .22em; text-transform: uppercase; }
-.finp, .ftxt { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: #fff; font-family: var(--fB); font-size: 14px; padding: 14px 18px; outline: none; border-radius: 8px; transition: border-color .25s, background .25s; resize: none; }
-.finp::placeholder, .ftxt::placeholder { color: rgba(255,255,255,.22); }
-.finp:focus, .ftxt:focus { border-color: rgba(54,85,245,.55); background: rgba(54,85,245,.07); }
-.ftxt { height: 136px; }
-.csend { padding: 15px 38px; background: linear-gradient(135deg,var(--a),var(--a2)); color: #fff; font-family: var(--fB); font-size: 13px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; width: fit-content; transition: transform .25s, box-shadow .25s; }
-.csend:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(54,85,245,.4); }
 .cinfo { display: flex; flex-direction: column; gap: 16px; }
 .ci { display: flex; align-items: center; gap: 18px; padding: 22px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; transition: background .25s, border-color .25s, transform .25s; }
 .ci:hover { background: rgba(54,85,245,.1); border-color: rgba(54,85,245,.28); transform: translateX(7px); }
@@ -262,9 +253,9 @@ footer { padding: 28px 64px; background: var(--dark); border-top: 1px solid rgba
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat-card"><div class="stat-n" data-to="8">0</div><div class="stat-l">Projets</div></div>
+    <div class="stat-card"><div class="stat-n" data-to="5">0</div><div class="stat-l">Projets</div></div>
     <div class="stat-card"><div class="stat-n" data-to="2">0</div><div class="stat-l">Stages</div></div>
-    <div class="stat-card"><div class="stat-n" data-to="5">0</div><div class="stat-l">Langages</div></div>
+    <div class="stat-card"><div class="stat-n" data-to="6">0</div><div class="stat-l">Langages</div></div>
     <div class="stat-card"><div class="stat-n" data-to="2">0</div><div class="stat-l">Ans BTS</div></div>
   </div>
   <div class="scroll-hint">
@@ -313,27 +304,36 @@ footer { padding: 28px 64px; background: var(--dark); border-top: 1px solid rgba
     <div class="sk-groups">
       <div>
         <div class="sk-group-title">Back-End &amp; Langages</div>
-        <div class="sk-pills"><span class="sk-pill">PHP</span><span class="sk-pill">Python</span><span class="sk-pill">SQL / MySQL</span></div>
+        <div class="sk-pills"><span class="sk-pill">PHP</span><span class="sk-pill">Python</span><span class="sk-pill">C#</span><span class="sk-pill">SQL / MySQL</span></div>
       </div>
       <div>
         <div class="sk-group-title">Front-End &amp; Web</div>
-        <div class="sk-pills"><span class="sk-pill">HTML / CSS</span></div>
+        <div class="sk-pills"><span class="sk-pill">HTML / CSS</span><span class="sk-pill">Flutter / Dart</span></div>
       </div>
       <div>
         <div class="sk-group-title">Frameworks &amp; Outils</div>
-        <div class="sk-pills"><span class="sk-pill">Laravel</span><span class="sk-pill">Git / GitHub</span></div>
+        <div class="sk-pills"><span class="sk-pill">Laravel</span><span class="sk-pill">WinForms</span><span class="sk-pill">Git / GitHub</span><span class="sk-pill">API REST</span></div>
+      </div>
+      <div>
+        <div class="sk-group-title">Conception &amp; Architecture</div>
+        <div class="sk-pills"><span class="sk-pill">Merise / MCD</span><span class="sk-pill">UML</span><span class="sk-pill">Modélisation BDD</span></div>
       </div>
       <div>
         <div class="sk-group-title">Méthodes &amp; Sécurité</div>
-        <div class="sk-pills"><span class="sk-pill">OWASP</span></div>
+        <div class="sk-pills"><span class="sk-pill">OWASP</span><span class="sk-pill">Méthode Agile</span><span class="sk-pill">RGPD</span></div>
+      </div>
+      <div>
+        <div class="sk-group-title">Systèmes &amp; Réseaux</div>
+        <div class="sk-pills"><span class="sk-pill">Linux</span><span class="sk-pill">Windows Server</span></div>
       </div>
     </div>
     <div class="tech-wrap">
       <div class="tech-title">Technologies maîtrisées</div>
       <div class="tech-tags">
         <span class="ttag b">PHP</span><span class="ttag p">Laravel</span><span class="ttag g">MySQL</span>
-        <span class="ttag">Python</span>
-        <span class="ttag g">Git</span><span class="ttag g">OWASP</span>
+        <span class="ttag">Python</span><span class="ttag">C#</span>
+        <span class="ttag">Flutter</span>
+        <span class="ttag g">Git</span><span class="ttag g">OWASP</span><span class="ttag g">UML</span>
       </div>
     </div>
   </div>
@@ -404,11 +404,11 @@ footer { padding: 28px 64px; background: var(--dark); border-top: 1px solid rgba
         <div class="pcard-sm-ico ico1">🎓</div>
         <div class="pcard-sm-title">APEEAC</div>
         <div class="pdesc-sm-wrap" id="wrap-sm-4">
-          <div class="pdesc-sm" id="desc-sm-4">Description à compléter.</div>
+          <div class="pdesc-sm" id="desc-sm-4">Site web réalisé pour l'Association des Parents d'Élèves, des Étudiants et des Amis du Conservatoire (APEEAC). Développé avec Laravel côté back-end et HTML / CSS pour l'interface.</div>
           <div class="pdesc-sm-fade" id="fade-sm-4"></div>
         </div>
         <button class="read-more-sm" id="btn-sm-4" onclick="toggleDescSm('sm-4')">Lire plus <span class="rm-arrow">↓</span></button>
-        <div class="ptags"><span class="ptag a">À définir</span></div>
+        <div class="ptags"><span class="ptag a">Laravel</span><span class="ptag a">HTML</span><span class="ptag a">CSS</span></div>
         <a class="plink" href="apeeac.html" style="padding:6px 0 0;font-size:10px;">Voir le projet ↗</a>
       </div>
     </div>
@@ -427,9 +427,7 @@ footer { padding: 28px 64px; background: var(--dark); border-top: 1px solid rgba
       <div class="tl-role">Développeur Web</div>
       <div class="tl-where">Conservatoire Eugene Bozza, Valenciennes</div>
       <ul class="tl-list">
-        <li>Développement d'un module de gestion des demandes internes en PHP/Laravel</li>
-        <li>Interfaces responsives Bootstrap 5 et intégration API REST</li>
-        <li>Rédaction de documentation technique et tests unitaires PHPUnit</li>
+        <li>Développement d'un module de gestion des demandes internes en Laravel</li>
         <li>Travail en équipe Agile Scrum, versionnage Git/GitHub</li>
       </ul>
     </div>
@@ -439,20 +437,17 @@ footer { padding: 28px 64px; background: var(--dark); border-top: 1px solid rgba
       <div class="tl-role">BTS SIO — Option SLAM</div>
       <div class="tl-where">Lycée Henri Wallon, Valenciennes</div>
       <ul class="tl-list">
-        <li>Développement web (PHP) et applicatif (Python)</li>
-        <li>Conception BDD (Merise, UML), sécurité OWASP, API REST</li>
+        <li>Développement web (PHP, HTML / CSS) et applicatif (Python)</li>
+        <li>Conception BDD (Merise, UML, MySQL), sécurité OWASP, API REST</li>
+        <li>Développement avec le framework Laravel</li>
         <li>Gestion de projet informatique en méthode Agile</li>
       </ul>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-period">Avr – Mai 2024</div>
+      <div class="tl-period">2023 - 2024</div>
       <div class="tl-role">LICENCE informatique</div>
       <div class="tl-where">Université Mont Muy, Aulnoy-lez-valenciennes</div>
-      <ul class="tl-list">
-        <li>Assistance utilisateurs, maintenance du parc informatique</li>
-        <li>Participation à la migration des postes sous Windows 11</li>
-      </ul>
     </div>
     <div class="tl-item">
       <div class="tl-dot alt"></div>
@@ -470,21 +465,14 @@ footer { padding: 28px 64px; background: var(--dark); border-top: 1px solid rgba
     <div class="sec-label"><div class="sec-line"></div>Contact</div>
     <h2 class="sec-title">MES<br>COORDONNÉS</h2>
   </div>
-  <div class="contact-body">
-    <form class="cform" onsubmit="sendMsg(event)">
-      <div class="fg"><label class="flbl">Votre nom</label><input class="finp" type="text" placeholder="Ywel Djerba" required></div>
-      <div class="fg"><label class="flbl">Email</label><input class="finp" type="email" placeholder="Ywel@exemple.fr" required></div>
-      <div class="fg"><label class="flbl">Message</label><textarea class="ftxt" placeholder="Bonjour Ywel…" required></textarea></div>
-      <button class="csend" type="submit"><span id="sendTxt">Envoyer le message →</span></button>
-    </form>
+  <div class="contact-body" style="grid-template-columns:1fr">
     <div class="cinfo">
       <div class="ci"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val">ywel.zaboub@gmail.com</div></div></div>
       <div class="ci"><div class="ci-ico">📞</div><div><div class="ci-lbl">Téléphone</div><div class="ci-val">+33 6 11 30 55 58</div></div></div>
       <div class="ci"><div class="ci-ico">📍</div><div><div class="ci-lbl">Localisation</div><div class="ci-val">Valenciennes, France</div></div></div>
       <div class="socials">
         <a class="soc" href="https://www.linkedin.com/in/ywel-djerba-4914bb356/" target="_blank" rel="noopener" title="LinkedIn">💼</a>
-        <a class="soc" href="#" title="GitHub">🐱</a>
-        <a class="soc" href="#" title="CV PDF">📄</a>
+        <a class="soc" href="https://github.com/yweldjerba" target="_blank" rel="noopener" title="GitHub">🐱</a>
       </div>
     </div>
   </div>
@@ -494,7 +482,6 @@ footer { padding: 28px 64px; background: var(--dark); border-top: 1px solid rgba
   <div class="fc">© 2026 Ywel Djerba — BTS SIO SLAM</div>
   <ul class="flinks">
     <li><a href="#hero">↑ Haut</a></li>
-    <li><a href="#">CV PDF</a></li>
     <li><a href="#">Mentions légales</a></li>
   </ul>
 </footer>
@@ -533,12 +520,11 @@ window.addEventListener('scroll',function(){document.getElementById('nav').class
 var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll('.rv,.rv-l').forEach(function(el){ro.observe(el);});
 
-var cro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,target=+el.dataset.to,n=0,step=Math.max(1,Math.ceil(1200/target/16)),t=setInterval(function(){n=Math.min(n+1,target);el.textContent=n+'+';if(n>=target)clearInterval(t);},step);cro.unobserve(e.target);}});},{threshold:1});
+var cro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,target=+el.dataset.to,n=0,step=Math.max(1,Math.ceil(1200/target/16)),t=setInterval(function(){n=Math.min(n+1,target);el.textContent=n;if(n>=target)clearInterval(t);},step);cro.unobserve(e.target);}});},{threshold:1});
 document.querySelectorAll('[data-to]').forEach(function(el){cro.observe(el);});
 
 window.addEventListener('scroll',function(){var s=scrollY,bg=document.querySelector('.hero-bgtxt');if(bg)bg.style.transform='translate(-50%, calc(-50% + '+(s*.1)+'px))';document.querySelector('.hero-glow1').style.transform='translateY('+(s*.06)+'px)';document.querySelector('.hero-glow2').style.transform='translateY('+(s*.04)+'px)';});
 
-function sendMsg(e){e.preventDefault();var btn=document.getElementById('sendTxt');btn.textContent='Envoi...';setTimeout(function(){btn.textContent='Envoyé !';btn.parentElement.style.background='linear-gradient(135deg,#059669,#10b981)';setTimeout(function(){btn.textContent='Envoyer le message';btn.parentElement.style.background='';e.target.reset();},2800);},1000);}
 </script>
 </body>
 </html>

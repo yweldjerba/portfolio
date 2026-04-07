@@ -68,29 +68,68 @@ body { background: var(--bg); color: var(--dark); font-family: var(--fB); overfl
 .proj-desc p { margin-bottom: 18px; }
 .proj-desc strong { color: var(--dark); font-weight: 700; }
 
-/* ─── PHOTOS GRID ─── */
+/* ─── CARROUSEL ─── */
 .photos-section { margin-bottom: 80px; }
-.photos-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.photos-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.photo-card {
-  position: relative; border-radius: 16px; overflow: hidden;
-  aspect-ratio: 16/10; background: var(--bg2);
-  box-shadow: 0 6px 30px rgba(54,85,245,.1);
-  cursor: pointer;
-  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+.carousel-wrap { position: relative; }
+.carousel-track-wrap {
+  overflow: hidden; border-radius: 20px;
+  border: 1px solid rgba(54,85,245,.12);
+  box-shadow: 0 4px 24px rgba(54,85,245,.08);
 }
-.photo-card:hover { transform: scale(1.02) translateY(-4px); box-shadow: 0 18px 60px rgba(54,85,245,.18); }
-.photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.photo-card-overlay {
-  position: absolute; inset: 0; background: rgba(54,85,245,.0);
+.carousel-track {
+  display: flex; transition: transform .45s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+}
+.carousel-slide {
+  min-width: 100%; aspect-ratio: 16/9;
+  position: relative; cursor: pointer;
+}
+.carousel-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.97) saturate(1.05);
+}
+.carousel-slide-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,12,26,.5) 0%, transparent 50%);
+  opacity: 0; transition: opacity .3s;
+  display: flex; align-items: flex-end; padding: 20px;
+}
+.carousel-slide:hover .carousel-slide-overlay { opacity: 1; }
+.carousel-slide-overlay span {
+  font-family: var(--fM); font-size: 9px; color: #fff;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(54,85,245,.75); backdrop-filter: blur(6px);
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+}
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
+  border: 1px solid rgba(54,85,245,.15);
+  color: var(--dark); font-size: 20px; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: all .3s;
+  z-index: 10; transition: background .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 16px rgba(54,85,245,.1);
 }
-.photo-card:hover .photo-card-overlay { background: rgba(54,85,245,.15); opacity: 1; }
-.photo-card-overlay span { font-family: var(--fM); font-size: 10px; color: #fff; letter-spacing: .14em; text-transform: uppercase; background: rgba(54,85,245,.8); padding: 8px 18px; border-radius: 100px; }
-.photo-caption { font-family: var(--fM); font-size: 8px; color: var(--dim); letter-spacing: .12em; text-align: center; margin-top: 8px; }
-
-.photo-card-wide { grid-column: span 2; aspect-ratio: 21/9; }
+.carousel-btn:hover { background: var(--a); color: #fff; transform: translateY(-50%) scale(1.08); box-shadow: 0 8px 24px rgba(54,85,245,.3); }
+.carousel-btn:disabled { opacity: .3; cursor: default; transform: translateY(-50%); }
+.carousel-prev { left: -22px; }
+.carousel-next { right: -22px; }
+.carousel-dots {
+  display: flex; justify-content: center; gap: 8px; margin-top: 18px;
+}
+.carousel-dot {
+  width: 7px; height: 7px; border-radius: 100px;
+  background: rgba(54,85,245,.2); border: none; cursor: pointer;
+  transition: background .3s, width .3s;
+}
+.carousel-dot.active { background: var(--a); width: 22px; }
+.carousel-counter {
+  font-family: var(--fM); font-size: 9px; color: var(--dim);
+  letter-spacing: .18em; text-align: center; margin-top: 10px;
+  text-transform: uppercase;
+}
 
 /* No photos */
 .no-photos {
@@ -130,6 +169,90 @@ body { background: var(--bg); color: var(--dark); font-family: var(--fB); overfl
 .lb-nav:hover { background: rgba(54,85,245,.45); }
 .lb-prev { left: 24px; } .lb-next { right: 24px; }
 .lb-counter { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); font-family: var(--fM); font-size: 10px; color: rgba(255,255,255,.5); letter-spacing: .14em; }
+
+/* ─── CODE SECTION ─── */
+.code-section { margin-bottom: 80px; }
+.code-img-wrap {
+  position: relative; border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(54,85,245,.15);
+  box-shadow: 0 8px 40px rgba(54,85,245,.1), 0 2px 8px rgba(10,12,26,.06);
+  background: #1e1e2e; cursor: pointer;
+  transition: box-shadow .4s, border-color .4s;
+}
+.code-img-wrap:hover {
+  box-shadow: 0 20px 64px rgba(54,85,245,.2), 0 4px 16px rgba(10,12,26,.1);
+  border-color: rgba(54,85,245,.35);
+}
+.code-img-wrap img { width: 100%; display: block; }
+.code-img-wrap::after {
+  content: 'Agrandir ↗'; position: absolute; bottom: 16px; right: 16px;
+  font-family: var(--fM); font-size: 9px; color: #fff;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(54,85,245,.75); backdrop-filter: blur(6px);
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+  opacity: 0; transition: opacity .3s;
+}
+.code-img-wrap:hover::after { opacity: 1; }
+#code-lb.open { opacity: 1 !important; pointer-events: all !important; }
+
+/* ─── BDD SECTION ─── */
+.bdd-section { margin-bottom: 80px; }
+.bdd-schema-wrap {
+  position: relative; border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(54,85,245,.15);
+  box-shadow: 0 8px 40px rgba(54,85,245,.1), 0 2px 8px rgba(10,12,26,.06);
+  background: #f8f9ff;
+  cursor: pointer;
+  transition: box-shadow .4s, border-color .4s;
+}
+.bdd-schema-wrap:hover {
+  box-shadow: 0 20px 64px rgba(54,85,245,.18), 0 4px 16px rgba(10,12,26,.1);
+  border-color: rgba(54,85,245,.3);
+}
+.bdd-schema-wrap img { width: 100%; display: block; }
+.bdd-schema-wrap::after {
+  content: 'Agrandir ↗';
+  position: absolute; bottom: 16px; right: 16px;
+  font-family: var(--fM); font-size: 9px; color: #fff;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(54,85,245,.75); backdrop-filter: blur(6px);
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+  opacity: 0; transition: opacity .3s;
+}
+.bdd-schema-wrap:hover::after { opacity: 1; }
+
+.bdd-tables {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-top: 24px;
+}
+.bdd-table {
+  background: #fff; border: 1px solid rgba(54,85,245,.12);
+  border-radius: 14px; padding: 16px 18px;
+  box-shadow: 0 2px 12px rgba(54,85,245,.06);
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.bdd-table:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(54,85,245,.14);
+  border-color: rgba(54,85,245,.28);
+}
+.bdd-table-name {
+  font-family: var(--fM); font-size: 10px; color: var(--a);
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 1px solid rgba(54,85,245,.1);
+}
+.bdd-table-fields { display: flex; flex-direction: column; gap: 4px; }
+.bdd-field {
+  font-size: 12px; color: var(--muted);
+  font-family: var(--fM); letter-spacing: .04em;
+}
+.bdd-field.pk { color: var(--a); font-weight: 700; }
+.bdd-field.fk { color: var(--a2); }
+
+#bdd-lb.open { opacity: 1 !important; pointer-events: all !important; }
 
 /* ─── FOOTER ─── */
 .proj-footer {
@@ -174,6 +297,38 @@ body { background: var(--bg); color: var(--dark); font-family: var(--fB); overfl
     <p>Les praticiens peuvent se connecter à l'application afin de faire une demande de congé en sélectionnant une date de début et une date de fin. Le système vérifie automatiquement le <strong>solde de congés disponible</strong> afin d'éviter qu'un utilisateur demande plus de jours que ceux auxquels il a droit.</p>
     <p>L'application inclut également un <strong>compte dédié aux ressources humaines (RH)</strong>. Ce compte permet de consulter les demandes de congés, puis de les valider ou de les refuser en fonction des besoins du service et des règles internes.</p>
     <p>Ce système permet ainsi de centraliser les demandes, de mieux gérer les soldes de congés et d'améliorer le suivi des validations par le service RH.</p>
+  </div>
+
+  <!-- EXTRAIT DE CODE -->
+  <div class="code-section">
+    <div class="section-label">Extrait de code</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
+      <div class="code-img-wrap" onclick="document.getElementById('code-lb').classList.add('open');document.body.style.overflow='hidden'">
+        <img src="images/projets/conges/conge.jpg" alt="Extrait de code C#">
+      </div>
+      <div style="font-size:15px;color:var(--muted);line-height:1.95;">
+        <p>Cette méthode sert à <strong style="color:var(--dark)">récupérer tous les praticiens</strong> depuis une base de données MySQL et à les retourner sous forme de <strong style="color:var(--dark)">liste C#</strong>.</p>
+      </div>
+    </div>
+    <div id="code-lb" style="position:fixed;inset:0;z-index:700;background:rgba(10,12,26,.94);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s" onclick="document.getElementById('code-lb').classList.remove('open');document.body.style.overflow=''">
+      <img src="images/projets/conges/conge.jpg" alt="Extrait de code C#" style="max-width:92vw;max-height:90vh;border-radius:14px;box-shadow:0 30px 100px rgba(0,0,0,.5);object-fit:contain" onclick="event.stopPropagation()">
+      <button onclick="document.getElementById('code-lb').classList.remove('open');document.body.style.overflow=''" style="position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px)">✕</button>
+    </div>
+  </div>
+
+  <!-- BDD -->
+  <div class="bdd-section">
+    <div class="section-label">Base de données</div>
+
+    <div class="bdd-schema-wrap" onclick="document.getElementById('bdd-lb').classList.add('open');document.body.style.overflow='hidden'">
+      <img src="images/projets/conges/ap1.jpg" alt="Schéma de la base de données">
+    </div>
+
+    <!-- Lightbox BDD -->
+    <div id="bdd-lb" style="position:fixed;inset:0;z-index:700;background:rgba(10,12,26,.94);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s" onclick="document.getElementById('bdd-lb').classList.remove('open');document.body.style.overflow=''">
+      <img src="images/projets/conges/ap1.jpg" alt="Schéma BDD" style="max-width:92vw;max-height:90vh;border-radius:14px;box-shadow:0 30px 100px rgba(0,0,0,.5);object-fit:contain" onclick="event.stopPropagation()">
+      <button onclick="document.getElementById('bdd-lb').classList.remove('open');document.body.style.overflow=''" style="position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px)">✕</button>
+    </div>
   </div>
 
   <div class="photos-section">
@@ -227,24 +382,70 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowLeft')  lbNav(-1, { stopPropagation: function(){} });
 });
 
+
+var carouselIndex = 0;
+
 function buildGallery(photoList) {
   photos = photoList;
   var container = document.getElementById('gallery');
   if (!photos || photos.length === 0) {
-    container.innerHTML = '<div class="no-photos"><div class="no-photos-ico">🖼️</div><div class="no-photos-txt">Aucune capture pour l\'instant.<br>Ajoute tes images dans <code>images/projets/</code></div></div>';
+    container.innerHTML = '<div class="no-photos"><div class="no-photos-ico">🖼️</div><div class="no-photos-txt">Aucune capture pour l\'instant.</div></div>';
     return;
   }
-  var gridClass = photos.length >= 3 ? 'photos-grid-3' : 'photos-grid-2';
-  var html = '<div class="' + gridClass + '">';
-  photos.forEach(function(src, i) {
-    var wide = (photos.length % 2 !== 0 && i === photos.length - 1) ? ' photo-card-wide' : '';
-    html += '<div class="photo-card' + wide + '" onclick="openLightbox(' + i + ')">';
-    html += '<img src="' + src + '" alt="Capture ' + (i+1) + '" loading="lazy">';
-    html += '<div class="photo-card-overlay"><span>Agrandir ↗</span></div>';
-    html += '</div>';
+
+  var slides = photos.map(function(src, i) {
+    return '<div class="carousel-slide" onclick="openLightbox(' + i + ')">'
+      + '<img src="' + src + '" alt="Capture ' + (i+1) + '" loading="lazy">'
+      + '<div class="carousel-slide-overlay"><span>Agrandir ↗</span></div>'
+      + '</div>';
+  }).join('');
+
+  var dots = photos.map(function(_, i) {
+    return '<button class="carousel-dot' + (i === 0 ? ' active' : '') + '" onclick="goToSlide(' + i + ')"></button>';
+  }).join('');
+
+  container.innerHTML =
+    '<div class="carousel-wrap">'
+    + '<div class="carousel-track-wrap"><div class="carousel-track" id="c-track">' + slides + '</div></div>'
+    + '<button class="carousel-btn carousel-prev" id="c-prev" onclick="carouselNav(-1)">‹</button>'
+    + '<button class="carousel-btn carousel-next" id="c-next" onclick="carouselNav(1)">›</button>'
+    + '</div>'
+    + '<div class="carousel-dots" id="c-dots">' + dots + '</div>'
+    + '<div class="carousel-counter" id="c-counter">1 / ' + photos.length + '</div>';
+
+  updateCarousel();
+
+  // swipe
+  var startX = 0;
+  var track = document.getElementById('c-track');
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) carouselNav(diff > 0 ? 1 : -1);
   });
-  html += '</div>';
-  container.innerHTML = html;
+}
+
+function updateCarousel() {
+  var track = document.getElementById('c-track');
+  if (track) track.style.transform = 'translateX(-' + (carouselIndex * 100) + '%)';
+  var dots = document.querySelectorAll('.carousel-dot');
+  dots.forEach(function(d, i) { d.classList.toggle('active', i === carouselIndex); });
+  var counter = document.getElementById('c-counter');
+  if (counter) counter.textContent = (carouselIndex + 1) + ' / ' + photos.length;
+  var prev = document.getElementById('c-prev');
+  var next = document.getElementById('c-next');
+  if (prev) prev.disabled = carouselIndex === 0;
+  if (next) next.disabled = carouselIndex === photos.length - 1;
+}
+
+function carouselNav(dir) {
+  carouselIndex = Math.max(0, Math.min(photos.length - 1, carouselIndex + dir));
+  updateCarousel();
+}
+
+function goToSlide(i) {
+  carouselIndex = i;
+  updateCarousel();
 }
 
 buildGallery([
